@@ -39,17 +39,17 @@
           <div class="item item-input-inset">
             <label class="item-input-wrapper">
               <input type="number" placeholder="Minutes before" min="0" max="180" 
-              data-ng-model="homeController.minutesBeforeFajr">
+              data-ng-model="homeController.minutesBeforeFajrInput">
             </label>
-            <button class="button button-small" data-ng-click="homeController.tahajjud = 10">
+            <button class="button button-small" data-ng-click="homeController.onSubmit()">
               Submit
             </button>
           </div>  
           <div class="row">
-              Fajr is at {{homeController.fajr}}AM
+              Fajr is at {{homeController.fajr}}
           </div>
           <div class="row">
-              We'll wake you at {{homeController.tahajjud}}AM - {{homeController.minutesBeforeFajr}} minutes before Fajr
+              We'll wake you at {{homeController.tahajjud}} - {{homeController.minutesBeforeFajr}} minutes before Fajr
           </div>
         </div>
       </ion-content>
