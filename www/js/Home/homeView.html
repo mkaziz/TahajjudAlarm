@@ -1,0 +1,13 @@
+<ion-view>
+	<ion-content class="padding">
+		<div data-ng-controller="HomeController as homeController">
+			<p>Your Tahajjud alarm is set to:</p>
+			<h1>{{homeController.alarmTime}}</h1>
+			<p>This is {{homeController.minutesBeforeFajr}} minutes before Fajr, 
+				which is at {{homeController.fajrTime}}.</p>
+			<p>Your current location is: Chicago</p>
+			
+			<a data-ng-href="#/settings">Settings</a>
+		</div>
+	</ion-content>
+</ion-view>

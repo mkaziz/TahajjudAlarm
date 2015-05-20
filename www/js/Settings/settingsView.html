@@ -1,0 +1,21 @@
+<ion-view>
+  <ion-content class="padding">
+    <div data-ng-controller="SettingsController as settingsController">
+      <div class="row">
+        <label class="item-input-wrapper">
+          <input type="number" placeholder="Minutes before" min="0" max="180" 
+          data-ng-model="settingsController.minutesBeforeFajrInput">
+        </label>
+        <button class="button button-small" data-ng-click="settingsController.onSubmit()">
+          Submit
+        </button>
+      </div>  
+      <div class="row">
+          Fajr is at {{settingsController.fajr}}
+      </div>
+      <div class="row">
+          We'll wake you at {{settingsController.tahajjud}} - {{settingsController.minutesBeforeFajr}} minutes before Fajr
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
