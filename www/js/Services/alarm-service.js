@@ -32,6 +32,11 @@ angular.module("TahajjudAlarm").service("AlarmService", [ '$localStorage', 'pray
 			//todo: validate input
 			$localStorage.alarmTime = minutes;
 		}
+		
+		self.turnOffAlarm = function (minutes) {
+			//todo: validate input
+			delete $localStorage.alarmTime;
+		}
 	}
 	
 ]);

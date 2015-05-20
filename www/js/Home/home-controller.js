@@ -10,9 +10,11 @@ angular.module("TahajjudAlarm").controller('HomeController', ['prayTimes', '$sco
 		var alarmTime = AlarmService.getAlarmTime();
 		self.isAlarmSet = alarmTime !== undefined;
 		
-		self.alarmTime = alarmTime + "2AM";
+		self.alarmTime = alarmTime;
 		self.minutesBeforeFajr = "3";
 		
-		
+		self.turnOffAlarm = function() {
+			AlarmService.turnOffAlarm();
+		}
 	}
 ]);
