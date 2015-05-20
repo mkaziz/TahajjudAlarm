@@ -1,13 +1,20 @@
 <ion-view>
 	<ion-content class="padding">
 		<div data-ng-controller="HomeController as homeController" class="home-view">
-			<p>Your Tahajjud alarm is set to:</p>
-			<h2>{{homeController.alarmTime}}</h2>
-			<p>This is {{homeController.minutesBeforeFajr}} minutes before Fajr, 
-				which is at {{homeController.fajrTime}}.</p>
-			<p>Your current location is: Chicago</p>
-			
-			<a data-ng-href="#/settings">Settings</a>
+			<div data-ng-show="homeController.isAlarmSet">
+				<p>Your Tahajjud alarm is set to:</p>
+				<h2>{{homeController.alarmTime}}</h2>
+				<p>This is {{homeController.minutesBeforeFajr}} minutes before Fajr, 
+					which is at {{homeController.fajrTime}}.</p>
+				<p>Your current location is: Chicago</p>
+				
+			</div>
+			<div data-ng-show="!homeController.isAlarmSet">
+				<p>Your Tahajjud alarm is not set. Click below to set it up:</p>
+				<a href="#/settings" class="button button-full button-balanced">
+				  Set up Alarm
+				</a>
+			</div>
 		</div>
 	</ion-content>
 </ion-view>
