@@ -27,6 +27,11 @@ angular.module("TahajjudAlarm").service("AlarmService", [ '$localStorage', 'pray
 		self.getAlarmTime = function () {
 			return $localStorage.alarmTime;
 		}
+		
+		self.setAlarmTime = function (minutes) {
+			//todo: validate input
+			$localStorage.alarmTime = minutes;
+		}
 	}
 	
 ]);
