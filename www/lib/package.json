@@ -1,16 +1,22 @@
 {
-  "name": "lib",
+  "name": "Tahajjud",
   "version": "0.0.0",
   "description": "",
-  "main": "index.js",
+  "main": " ",
   "dependencies": {
     "angular-moment": "~0.10.1",
-    "moment": "~2.10.3"
+    "moment": "~2.10.3",
+    "ngstorage": "~0.3.3"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": " "
   },
+  "repository": {
+    "type": "git",
+    "url": " "
+  },
+  "keywords": [],
   "author": "",
-  "license": "BSD-2-Clause"
+  "license": " "
 }
