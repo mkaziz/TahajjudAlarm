@@ -6,15 +6,11 @@
           <input type="number" placeholder="Minutes before" min="0" max="180" 
           data-ng-model="settingsController.minutesBeforeFajrInput">
         </label>
-        <button class="button button-small" data-ng-click="settingsController.onSubmit()">
-          Submit
-        </button>
       </div>  
       <div class="row">
-          Fajr is at {{settingsController.fajr}}
-      </div>
-      <div class="row">
-          We'll wake you at {{settingsController.tahajjud}} - {{settingsController.minutesBeforeFajr}} minutes before Fajr
+        <button class="button button-full button-balanced" data-ng-click="settingsController.onSubmit()">
+          Submit
+        </button>
       </div>
     </div>
   </ion-content>

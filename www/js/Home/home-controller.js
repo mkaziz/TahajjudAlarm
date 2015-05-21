@@ -5,16 +5,17 @@ angular.module("TahajjudAlarm").controller('HomeController', ['prayTimes', '$sco
 		
 	    var self = this;
 		
-		self.fajrTime = AlarmService.getFajrTime() + "AM";
+		self.fajrTime = AlarmService.getFajrDisplayTime();
 		
-		var alarmTime = AlarmService.getAlarmTime();
-		self.isAlarmSet = alarmTime !== undefined;
+		var alarmTime = AlarmService.getAlarmDisplayTime();
+		self.isAlarmSet = alarmTime !== "";
 		
 		self.alarmTime = alarmTime;
 		self.minutesBeforeFajr = "3";
 		
 		self.turnOffAlarm = function() {
 			AlarmService.turnOffAlarm();
-		}
+			window.location.reload(true);
+		};
 	}
 ]);

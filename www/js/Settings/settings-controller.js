@@ -36,12 +36,7 @@ angular.module("TahajjudAlarm").controller('SettingsController', ['prayTimes', '
 		self.fajrMoment = fajrMoment;
 		
 		self.onSubmit = function () {
-			self.minutesBeforeFajr = self.minutesBeforeFajrInput || 0;
-			self.tahajjudMoment = new Moment(self.fajrMoment);
-			self.tahajjudMoment = self.tahajjudMoment.subtract(self.minutesBeforeFajr || 0, 'minutes');
-			self.tahajjud = self.tahajjudMoment.format("h:mm a");
-			self.fajr = self.fajrMoment.format("h:mm a");
-			AlarmService.setAlarmTime(self.tahajjud);
+			AlarmService.setAlarmTime(self.minutesBeforeFajr);
 		};
 		
 	}

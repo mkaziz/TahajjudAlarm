@@ -13,7 +13,30 @@ angular.module("TahajjudAlarm").service("AlarmService", [ '$localStorage', 'pray
 		
 			var times = prayerTimes.getTimes(new Date(), [location.lat, location.long]);
 			
-			return times.fajr;
+			var fajrStr = times.fajr;
+		
+			var hours = parseInt(fajrStr.split(":")[0]);
+			var minutes = parseInt(fajrStr.split(":")[1]);
+			
+			var fajrMoment = moment();
+			fajrMoment.hour(hours);
+			fajrMoment.minute(minutes);
+			fajrMoment.second(0);
+			
+			return fajrMoment;
+		};
+		
+		var getAlarmTime = function () {
+			var minutesBefore = $localStorage.minutesBefore;
+			if (minutesBefore == undefined)
+				return null;
+			
+			var fajrMoment = self.getFajrTime();
+			return fajrMoment.subtract(minutesBefore, "minutes");
+		};
+		
+		self.getFajrDisplayTime = function () {
+			return self.getFajrTime().format("h:mm A");
 		};
 		
 		self.getLocation = function () {
@@ -24,18 +47,22 @@ angular.module("TahajjudAlarm").service("AlarmService", [ '$localStorage', 'pray
 			return $localStorage.calculationMethod || "ISNA";
 		};
 		
-		self.getAlarmTime = function () {
-			return $localStorage.alarmTime;
-		}
+		self.getAlarmDisplayTime = function () {
+			var alarmTime = getAlarmTime();
+			if (alarmTime == null)
+				return "";
+				
+			return alarmTime.format("h:mm A");
+		};
 		
 		self.setAlarmTime = function (minutes) {
 			//todo: validate input
-			$localStorage.alarmTime = minutes;
+			$localStorage.minutesBefore = minutes;
 		}
 		
 		self.turnOffAlarm = function (minutes) {
 			//todo: validate input
-			delete $localStorage.alarmTime;
+			delete $localStorage.minutesBefore;
 		}
 	}
 	
