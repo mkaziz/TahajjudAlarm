@@ -1,5 +1,6 @@
 ///* global angular */
-angular.module("TahajjudAlarm").controller('HomeController', ['prayTimes', '$scope', 'moment', 'AlarmService',
+angular.module("TahajjudAlarm").controller('HomeController', ['prayTimes', '$scope', 'moment', 
+	'AlarmService', "$timeout",
 	function(PrayTimes, $scope, Moment, AlarmService) {
 	    "use strict";
 		
@@ -11,11 +12,13 @@ angular.module("TahajjudAlarm").controller('HomeController', ['prayTimes', '$sco
 		self.isAlarmSet = alarmTime !== "";
 		
 		self.alarmTime = alarmTime;
-		self.minutesBeforeFajr = "3";
+		self.minutesBeforeFajr = AlarmService.getMinutesBefore();
 		
 		self.turnOffAlarm = function() {
 			AlarmService.turnOffAlarm();
-			window.location.reload(true);
+			$scope.$evalAsync(function() { 
+				window.location.reload(true); 
+			});
 		};
 	}
 ]);

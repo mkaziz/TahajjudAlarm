@@ -8,7 +8,7 @@ angular.module("TahajjudAlarm").service("AlarmService", [ '$localStorage', 'pray
 		self.getFajrTime = function () {
 			var location = self.getLocation();
 				
-			var calculationMethod = self.getCalculationMethod() || "ISNA";
+			var calculationMethod = getCalculationMethod() || "ISNA";
 			prayerTimes.setMethod(calculationMethod);
 		
 			var times = prayerTimes.getTimes(new Date(), [location.lat, location.long]);
@@ -24,6 +24,10 @@ angular.module("TahajjudAlarm").service("AlarmService", [ '$localStorage', 'pray
 			fajrMoment.second(0);
 			
 			return fajrMoment;
+		};
+		
+		var getCalculationMethod = function () {
+			return $localStorage.calculationMethod || "ISNA";
 		};
 		
 		var getAlarmTime = function () {
@@ -43,10 +47,6 @@ angular.module("TahajjudAlarm").service("AlarmService", [ '$localStorage', 'pray
 			return $localStorage.location || { lat: 42.056338, long: -87.696397 }; // default to Chicago
 		};
 		
-		self.getCalculationMethod = function () {
-			return $localStorage.calculationMethod || "ISNA";
-		};
-		
 		self.getAlarmDisplayTime = function () {
 			var alarmTime = getAlarmTime();
 			if (alarmTime == null)
@@ -58,11 +58,14 @@ angular.module("TahajjudAlarm").service("AlarmService", [ '$localStorage', 'pray
 		self.setAlarmTime = function (minutes) {
 			//todo: validate input
 			$localStorage.minutesBefore = minutes;
-		}
+		};
 		
 		self.turnOffAlarm = function (minutes) {
-			//todo: validate input
 			delete $localStorage.minutesBefore;
+		};
+		
+		self.getMinutesBefore = function () {
+			return $localStorage.minutesBefore;
 		}
 	}
 	
