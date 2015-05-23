@@ -1,6 +1,7 @@
 ///* global angular */
-angular.module("TahajjudAlarm").controller('SettingsController', ['prayTimes', '$scope', 'moment', 'AlarmService',
-	function(PrayTimes, $scope, Moment, AlarmService) {
+angular.module("TahajjudAlarm").controller('SettingsController', ['prayTimes', '$scope', 'moment', 
+	'AlarmService', '$ionicLoading',
+	function(PrayTimes, $scope, Moment, AlarmService, $ionicLoading) {
 	    "use strict";
 		
 	    var self = this;
@@ -28,6 +29,7 @@ angular.module("TahajjudAlarm").controller('SettingsController', ['prayTimes', '
 				
 		self.onSubmit = function () {
 			AlarmService.setAlarmTime(self.minutesBeforeFajrInput);
+			$ionicLoading.show({ template: 'Preferences Saved!', noBackdrop: false, duration: 3000 });
 		};
 		
 	}

@@ -6,19 +6,22 @@ angular.module("TahajjudAlarm").controller('HomeController', ['prayTimes', '$sco
 		
 	    var self = this;
 		
-		self.fajrTime = AlarmService.getFajrDisplayTime();
+		var loadAlarmTimes = function () {
+			self.fajrTime = AlarmService.getFajrDisplayTime();
 		
-		var alarmTime = AlarmService.getAlarmDisplayTime();
-		self.isAlarmSet = alarmTime !== "";
+			var alarmTime = AlarmService.getAlarmDisplayTime();
+			self.isAlarmSet = alarmTime !== "";
+			
+			self.alarmTime = alarmTime;
+			self.minutesBeforeFajr = AlarmService.getMinutesBefore();
+			
+		};
 		
-		self.alarmTime = alarmTime;
-		self.minutesBeforeFajr = AlarmService.getMinutesBefore();
+		loadAlarmTimes();
 		
 		self.turnOffAlarm = function() {
 			AlarmService.turnOffAlarm();
-			$scope.$evalAsync(function() { 
-				window.location.reload(true); 
-			});
+			loadAlarmTimes();
 		};
 	}
 ]);
