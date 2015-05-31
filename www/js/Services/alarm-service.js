@@ -27,7 +27,9 @@ angular.module("TahajjudAlarm").service("AlarmService", [ '$localStorage', 'pray
 		};
 		
 		var getCalculationMethod = function () {
-			return $localStorage.calculationMethod || "ISNA";
+			var calculationMethod = $localStorage.calculationMethod || "ISNA";
+			return self.getCalculationMethodList()[calculationMethod];
+			
 		};
 		
 		var getAlarmTime = function () {
@@ -66,7 +68,18 @@ angular.module("TahajjudAlarm").service("AlarmService", [ '$localStorage', 'pray
 		
 		self.getMinutesBefore = function () {
 			return $localStorage.minutesBefore;
+		};
+		
+		self.setCalculationMethod = function (key) {
+			if (self.getCalculationMethodList().indexOf(key) >= 0)
+				$localStorage.calculationMethod = key;
+			else
+				throw "calculation method not found: " + key;
 		}
+		
+		self.getCalculationMethodList = function () {
+			return prayerTimes.getDefaults();
+		};
 	}
 	
 ]);

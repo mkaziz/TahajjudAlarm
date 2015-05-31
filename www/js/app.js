@@ -8,6 +8,7 @@ angular.module('TahajjudAlarm', ['ionic', 'ngPrayTimes', 'angularMoment', 'ngSto
     $stateProvider
         .state('Home', {
             url: "/",
+            cache: false,
             controller: "HomeController",
             templateUrl: 'js/Home/homeView.html'
         })

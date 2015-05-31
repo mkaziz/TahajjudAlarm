@@ -21,6 +21,8 @@ angular.module("TahajjudAlarm").controller('SettingsController', ['prayTimes', '
 		fajrMoment.second(0);
 		
 		self.minutesBeforeFajr = 0;
+		self.calculationMethodList = AlarmService.getCalculationMethodList();
+		
 		
 		if (fajrMoment.isBefore(new Moment()))
 		{
