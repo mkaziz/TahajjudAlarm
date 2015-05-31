@@ -8,7 +8,7 @@ angular.module("TahajjudAlarm").service("AlarmService", [ '$localStorage', 'pray
 		self.getFajrTime = function () {
 			var location = self.getLocation();
 				
-			var calculationMethod = getCalculationMethod() || "ISNA";
+			var calculationMethod = self.getCalculationMethod();
 			prayerTimes.setMethod(calculationMethod);
 		
 			var times = prayerTimes.getTimes(new Date(), [location.lat, location.long]);
@@ -26,11 +26,7 @@ angular.module("TahajjudAlarm").service("AlarmService", [ '$localStorage', 'pray
 			return fajrMoment;
 		};
 		
-		var getCalculationMethod = function () {
-			var calculationMethod = $localStorage.calculationMethod || "ISNA";
-			return self.getCalculationMethodList()[calculationMethod];
-			
-		};
+		;
 		
 		var getAlarmTime = function () {
 			var minutesBefore = $localStorage.minutesBefore;
@@ -70,12 +66,17 @@ angular.module("TahajjudAlarm").service("AlarmService", [ '$localStorage', 'pray
 			return $localStorage.minutesBefore;
 		};
 		
+		self.getCalculationMethod = function () {
+			var calculationMethod = $localStorage.calculationMethod || "ISNA";
+			return calculationMethod;
+		};
+		
 		self.setCalculationMethod = function (key) {
-			if (self.getCalculationMethodList().indexOf(key) >= 0)
+			if (self.getCalculationMethodList()[key] !== undefined)
 				$localStorage.calculationMethod = key;
 			else
 				throw "calculation method not found: " + key;
-		}
+		};
 		
 		self.getCalculationMethodList = function () {
 			return prayerTimes.getDefaults();

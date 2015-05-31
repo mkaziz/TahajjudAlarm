@@ -1,1 +1,12 @@
 /* Empty. Add your own CSS if you like */
+
+
+/* ionic override */
+.item-select.item-stacked-label select {
+  position: relative; 
+  padding: 0px; 
+  max-width: 90%; 
+  direction:ltr; 
+  white-space: pre-wrap;
+  margin: -3px;
+}
