@@ -1,12 +1,18 @@
 <ion-view>
   <ion-content class="padding">
-    <div data-ng-controller="SettingsController as settingsController">
+    <form name="settingsForm" data-ng-controller="SettingsController as settingsController">
       
       <div class="list">
         <label class="item item-input item-stacked-label">
           <span class="input-label">Minutes Before Fajr</span>
-          <input type="text" placeholder="eg. 10" type="number" min="0" max="180" 
-          data-ng-model="settingsController.minutesBeforeFajrInput">
+          <input type="text" placeholder="eg. 10" type="number" name="minutes" 
+              data-ng-minlength="2" data-ng-maxlength="3" required 
+              data-ng-model="settingsController.minutesBeforeFajrInput" />
+            
+            <div ng-messages="settingsForm.minutes.$error" style="color:maroon" role="alert">
+              <div ng-message="required">Enter a value</div>
+              <div ng-message="minlength">Your field is too short</div>
+            </div>
         </label>
         <label class="item item-input item-select item-stacked-label">
           <span class="input-label">
