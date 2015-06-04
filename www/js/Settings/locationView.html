@@ -1,0 +1,21 @@
+<ion-view>
+  <ion-content class="padding">
+    <form name="settingsForm" data-ng-controller="SettingsController as settingsController">
+      
+      <div class="list">
+        <a class="item item-icon-left" href="#location">
+          <i class="icon ion-location"></i>
+          Set Location
+          <span class="item-note">
+            Chicago
+          </span>
+        </a>
+      </div> 
+      <div class="row">
+        <button ng-disabled="!settingsForm.$valid" class="button button-full button-balanced" data-ng-click="settingsController.onSubmit()">
+          Submit
+        </button>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

@@ -17,6 +17,11 @@ angular.module('TahajjudAlarm', ['ionic', 'ngPrayTimes', 'angularMoment', 'ngSto
             url: "/settings",
             controller: "SettingsController",
             templateUrl: 'js/Settings/settingsView.html'
+        })
+        .state('Location', {
+            url: "/location",
+            controller: "LocationController",
+            templateUrl: 'js/Settings/locationView.html'
         });
         
     $urlRouterProvider.otherwise('/');
