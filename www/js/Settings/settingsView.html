@@ -30,7 +30,7 @@
         </label>
       </div> 
       <div class="row">
-        <button class="button button-full button-balanced" data-ng-click="settingsController.onSubmit()">
+        <button ng-disabled="!settingsForm.$valid" class="button button-full button-balanced" data-ng-click="settingsController.onSubmit()">
           Submit
         </button>
       </div>
