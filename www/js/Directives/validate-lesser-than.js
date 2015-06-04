@@ -15,6 +15,8 @@ angular.module("TahajjudAlarm").directive("validateLesserThan", ["_", function (
 				else {
 					ngModel.$setValidity('lesserThan', false);
 				} 
+				
+				return value;
 			});
 		}
 	};

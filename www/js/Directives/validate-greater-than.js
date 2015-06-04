@@ -4,7 +4,6 @@ angular.module("TahajjudAlarm").directive("validateGreaterThan", ["_", function 
 	return {
 		require: "ngModel",
 		link: function (scope, element, attrs, ngModel) {
-			
 			ngModel.$parsers.push(function(value) {
 				var intValue = parseInt(value);
 				if (!value || value.length == 0 || !_.isNumber(intValue) || _.isNaN(intValue)) {
@@ -16,6 +15,7 @@ angular.module("TahajjudAlarm").directive("validateGreaterThan", ["_", function 
 				else {
 					ngModel.$setValidity('greaterThan', false);
 				} 
+				return value;
 			});
 		}
 	};
