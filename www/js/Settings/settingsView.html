@@ -14,6 +14,8 @@
             <div ng-messages="settingsForm.minutes.$error" style="color:maroon" role="alert">
               <div ng-message="required">Enter a value</div>
               <div ng-message="minlength">Your field is too short</div>
+              <div ng-message="greaterThan">Minutes must be greater than 0</div>
+              <div ng-message="lesserThan">Minutes must be lesser than 120</div>
             </div>
         </label>
         <label class="item item-input item-select item-stacked-label">

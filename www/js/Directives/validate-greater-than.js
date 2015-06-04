@@ -1,16 +1,22 @@
-angular.module("TahajjudAlarm").directive("ValidateGreaterThan", ["angular-underscore", function (_) {
+angular.module("TahajjudAlarm").directive("validateGreaterThan", ["_", function (_) {
 	"use strict";
 	
 	return {
 		require: "ngModel",
 		link: function (scope, element, attrs, ngModel) {
-			console.log("directive works");
+			
 			ngModel.$parsers.push(function(value) {
-				if (!value || value.length == 0 || !_.isNumber(value)) 
-					return;
-					
-				return value;
+				var intValue = parseInt(value);
+				if (!value || value.length == 0 || !_.isNumber(intValue) || _.isNaN(intValue)) {
+        			ngModel.$setValidity('greaterThan', false);
+				}
+				else if (attrs.validateGreaterThan < intValue) {
+					ngModel.$setValidity('greaterThan', true);
+				} 
+				else {
+					ngModel.$setValidity('greaterThan', false);
+				} 
 			});
 		}
-	}
+	};
 }]);
