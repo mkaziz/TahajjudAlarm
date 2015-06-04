@@ -6,7 +6,9 @@
         <label class="item item-input item-stacked-label">
           <span class="input-label">Minutes Before Fajr</span>
           <input type="text" placeholder="eg. 10" type="number" name="minutes" 
-              data-ng-minlength="2" data-ng-maxlength="3" required 
+              required 
+              data-validate-greater-than="0"
+              data-validate-lesser-than="120"
               data-ng-model="settingsController.minutesBeforeFajrInput" />
             
             <div ng-messages="settingsForm.minutes.$error" style="color:maroon" role="alert">

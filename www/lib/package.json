@@ -7,7 +7,9 @@
     "angular-moment": "~0.10.1",
     "moment": "~2.10.3",
     "ngstorage": "~0.3.3",
-    "angular-messages": "~1.4.0"
+    "angular-messages": "~1.4.0",
+    "angular-underscore": "0.0.3",
+    "underscore": "~1.8.3"
   },
   "devDependencies": {},
   "scripts": {
