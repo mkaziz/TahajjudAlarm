@@ -6,7 +6,7 @@ angular.module("TahajjudAlarm").controller('SettingsController', ['prayTimes', '
 		
 	    var self = this;
 			
-		self.minutesBeforeFajr = 0;
+		self.minutesBeforeFajrInput = AlarmService.getMinutesBefore();
 		self.calculationMethodList = AlarmService.getCalculationMethodList();
 		self.calculationMethod = AlarmService.getCalculationMethod(); 	
 		
