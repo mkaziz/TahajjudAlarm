@@ -9,7 +9,8 @@
     "ngstorage": "~0.3.3",
     "angular-messages": "~1.4.0",
     "angular-underscore": "0.0.3",
-    "underscore": "~1.8.3"
+    "underscore": "~1.8.3",
+    "ng-cordova": "~0.1.17-alpha"
   },
   "devDependencies": {},
   "scripts": {
