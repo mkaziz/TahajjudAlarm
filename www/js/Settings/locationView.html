@@ -1,19 +1,20 @@
 <ion-view>
   <ion-content class="padding">
-    <form name="settingsForm" data-ng-controller="SettingsController as settingsController">
-      
-      <div class="list">
-        <a class="item item-icon-left" href="#location">
+    <form name="settingsForm" data-ng-controller="LocationController as locationController">
+
+      <div class="list list-inset">
+        <a class="item item-icon-left" data-ng-click="locationController.searchForLocation()">
           <i class="icon ion-location"></i>
           Set Location
           <span class="item-note">
-            Chicago
+            {{locationController.latitude}}, {{locationController.longitude}}
           </span>
         </a>
       </div> 
+      
       <div class="row">
         <button ng-disabled="!settingsForm.$valid" class="button button-full button-balanced" data-ng-click="settingsController.onSubmit()">
-          Submit
+          Update Location
         </button>
       </div>
     </div>
