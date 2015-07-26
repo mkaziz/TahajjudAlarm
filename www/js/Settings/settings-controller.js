@@ -8,8 +8,9 @@ angular.module("TahajjudAlarm").controller('SettingsController', ['prayTimes', '
 			
 		self.minutesBeforeFajrInput = AlarmService.getMinutesBefore();
 		self.calculationMethodList = AlarmService.getCalculationMethodList();
-		self.calculationMethod = AlarmService.getCalculationMethod(); 	
-		
+		self.calculationMethod = AlarmService.getCalculationMethod(); 
+		self.isAlarmSet = AlarmService.isAlarmSet();
+	
 		self.onSubmit = function () {
 			AlarmService.setAlarmTime(self.minutesBeforeFajrInput);
 			AlarmService.setCalculationMethod(self.calculationMethod);
@@ -19,6 +20,11 @@ angular.module("TahajjudAlarm").controller('SettingsController', ['prayTimes', '
 		LocationService.getLocationName(function (locName) {
 			self.locationName = locName;
 		});
+		
+		self.toggleAlarm = function() {
+			if (!self.isAlarmSet)
+				AlarmService.turnOffAlarm();
+		};
 		
 	}
 ]);

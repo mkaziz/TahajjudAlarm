@@ -7,13 +7,7 @@ angular.module("TahajjudAlarm").controller('HomeController', ['prayTimes', '$sco
 	    var self = this;
 		
 		var loadAlarmTimes = function () {
-			self.fajrTime = AlarmService.getFajrDisplayTime();
-		
-			var alarmTime = AlarmService.getAlarmDisplayTime();
-			self.isAlarmSet = alarmTime !== "";
-			
-			self.alarmTime = alarmTime;
-			self.minutesBeforeFajr = AlarmService.getMinutesBefore();
+			self.isAlarmSet = AlarmService.isAlarmSet();
 			
 			self.alarms = [];
 			
@@ -26,9 +20,6 @@ angular.module("TahajjudAlarm").controller('HomeController', ['prayTimes', '$sco
 		
 		loadAlarmTimes();
 		
-		self.turnOffAlarm = function() {
-			AlarmService.turnOffAlarm();
-			loadAlarmTimes();
-		};
+		
 	}
 ]);

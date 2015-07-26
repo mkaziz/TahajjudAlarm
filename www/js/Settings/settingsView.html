@@ -3,44 +3,57 @@
     <form name="settingsForm" data-ng-controller="SettingsController as settingsController">
       
       <div class="list">
-        <label class="item item-input item-stacked-label">
-          <span class="input-label">Minutes Before Fajr</span>
-          <input type="text" placeholder="eg. 10" type="number" name="minutes" 
-              required 
-              data-validate-greater-than="0"
-              data-validate-lesser-than="120"
-              data-ng-model="settingsController.minutesBeforeFajrInput" />
-            
-            <div ng-messages="settingsForm.minutes.$error" style="color:maroon" role="alert">
-              <div ng-message="required">Enter a value</div>
-              <div ng-message="minlength">Your field is too short</div>
-              <div ng-message="greaterThan">Minutes must be greater than 0</div>
-              <div ng-message="lesserThan">Minutes must be lesser than 120</div>
+        
+        <div class="item item-toggle" data-ng-click="self.toggleAlarm()">
+          Turn on Alarms
+          <label class="toggle toggle-balanced">
+            <input type="checkbox" data-ng-model="settingsController.isAlarmSet" 
+              data-ng-click="settingsController.toggleAlarm()">
+            <div class="track">
+              <div class="handle"></div>
             </div>
-        </label>
-        <label class="item item-input item-select item-stacked-label">
-          <span class="input-label">
-            Calculation Method
-          </span>
-          <div>
-            <select data-ng-model="settingsController.calculationMethod"  
-                data-ng-options="key as value.name for (key, value) in settingsController.calculationMethodList">
-            </select>
-          </div>
-        </label>
-        <a class="item item-icon-left" href="#location">
-          <i class="icon ion-location"></i>
-          Set Location
-          <span class="item-note">
-            {{settingsController.locationName}}
-          </span>
-        </a>
+          </label>
+        </div>
+        <div data-ng-show="settingsController.isAlarmSet">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Minutes Before Fajr</span>
+            <input placeholder="eg. 10" type="number" name="minutes" 
+                required 
+                data-validate-greater-than="0"
+                data-validate-lesser-than="120"
+                data-ng-model="settingsController.minutesBeforeFajrInput" />
+              
+              <div ng-messages="settingsForm.minutes.$error" style="color:maroon" role="alert">
+                <div ng-message="required">Enter a value</div>
+                <div ng-message="minlength">Your field is too short</div>
+                <div ng-message="greaterThan">Minutes must be greater than 0</div>
+                <div ng-message="lesserThan">Minutes must be lesser than 120</div>
+              </div>
+          </label>
+          <label class="item item-input item-select item-stacked-label">
+            <span class="input-label">
+              Calculation Method
+            </span>
+            <div>
+              <select data-ng-model="settingsController.calculationMethod"  
+                  data-ng-options="key as value.name for (key, value) in settingsController.calculationMethodList">
+              </select>
+            </div>
+          </label>
+          <a class="item item-icon-left" href="#location">
+            <i class="icon ion-location"></i>
+            Set Location
+            <span class="item-note">
+              {{settingsController.locationName}}
+            </span>
+          </a>
+        </div>
       </div> 
-      <div class="row">
+      <div class="row" data-ng-show="settingsController.isAlarmSet">
         <button ng-disabled="!settingsForm.$valid" class="button button-full button-balanced" data-ng-click="settingsController.onSubmit()">
           Submit
         </button>
       </div>
-    </div>
+    </form>
   </ion-content>
 </ion-view>

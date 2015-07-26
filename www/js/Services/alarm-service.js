@@ -28,12 +28,11 @@ angular.module("TahajjudAlarm").service("AlarmService", [ '$localStorage', 'pray
 		};
 		
 		var getAlarmTime = function (date) {
-			var minutesBefore = $localStorage.minutesBefore;
-			if (minutesBefore == undefined)
+			if (!self.isAlarmSet)
 				return null;
 			
 			var fajrMoment = self.getFajrTime(date);
-			return fajrMoment.subtract(minutesBefore, "minutes");
+			return fajrMoment.subtract(self.getMinutesBefore(), "minutes");
 		};
 		
 		self.getFajrDisplayTime = function () {
@@ -76,6 +75,10 @@ angular.module("TahajjudAlarm").service("AlarmService", [ '$localStorage', 'pray
 		
 		self.getCalculationMethodList = function () {
 			return prayerTimes.getDefaults();
+		};
+		
+		self.isAlarmSet = function() {
+			return typeof(self.getMinutesBefore()) !== "undefined";	
 		};
 	}
 	
