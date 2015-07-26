@@ -1,22 +1,53 @@
 <ion-view>
   <ion-content class="padding">
     <form name="settingsForm" data-ng-controller="LocationController as locationController">
-
-      <div class="list list-inset">
-        <a class="item item-icon-left" data-ng-click="locationController.searchForLocation()">
+      <div class="list">
+        <label class="item item-radio">
+          <input type="radio" name="locationRadio" value="manual" 
+            ng-model="locationController.locationSelectionMethod"
+            ng-click="locationController.saveLocationSelectionMethod()">
+          <div class="item-content">
+            Manually Enter Location
+          </div>
+          <i class="radio-icon ion-checkmark"></i>
+        </label>
+        
+        <label class="item item-radio">
+          <input type="radio" name="locationRadio" value="gps" 
+            ng-model="locationController.locationSelectionMethod"
+            ng-click="locationController.saveLocationSelectionMethod()">
+          <div class="item-content">
+            Use GPS to set location
+          </div>
+          <i class="radio-icon ion-checkmark"></i>
+        </label>
+      </div>
+      
+      <div class="gps-find-location" data-ng-show="locationController.locationSelectionMethod == 'gps'">
+        <button class="button button-block button-balanced" data-ng-click="locationController.searchForLocation()">
+          Locate
+        </button>
+      </div>
+      
+      <div class="gps-find-location" data-ng-show="locationController.locationSelectionMethod == 'manual'">
+        <div class="list list-inset">
+          <label class="item item-input">
+            <i class="icon ion-search placeholder-icon"></i>
+            <input type="text" placeholder="Search for location ...">
+          </label>
+        </div>
+      </div>
+            
+      <div class="list list-inset" >
+        <a class="item item-icon-left" >
           <i class="icon ion-location"></i>
-          Set Location
+            Chicago, IL
           <span class="item-note">
             {{locationController.latitude}}, {{locationController.longitude}}
           </span>
         </a>
       </div> 
-      
-      <div class="row">
-        <button ng-disabled="!settingsForm.$valid" class="button button-full button-balanced" data-ng-click="settingsController.onSubmit()">
-          Update Location
-        </button>
-      </div>
+           
     </div>
   </ion-content>
 </ion-view>

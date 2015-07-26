@@ -1,6 +1,6 @@
 ///* global angular */
 angular.module("TahajjudAlarm").controller('SettingsController', ['prayTimes', '$scope', 'moment', 
-	'AlarmService', '$ionicLoading',
+	'AlarmService', '$ionicLoading', 
 	function(PrayTimes, $scope, Moment, AlarmService, $ionicLoading) {
 	    "use strict";
 		

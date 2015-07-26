@@ -1,12 +1,13 @@
-angular.module("TahajjudAlarm").service("AlarmService", [ '$localStorage', 'prayTimes', 'moment',
-	function ($localStorage, PrayTimes, moment) {
+angular.module("TahajjudAlarm").service("AlarmService", [ '$localStorage', 'prayTimes', 'moment', 
+	'LocationService',
+	function ($localStorage, PrayTimes, moment, LocationService) {
 		"use strict";
 		
 		var self = this;
 		var prayerTimes = new PrayTimes();
 		
 		self.getFajrTime = function () {
-			var location = self.getLocation();
+			var location = LocationService.getLocation();
 				
 			var calculationMethod = self.getCalculationMethod();
 			prayerTimes.setMethod(calculationMethod);
@@ -26,8 +27,6 @@ angular.module("TahajjudAlarm").service("AlarmService", [ '$localStorage', 'pray
 			return fajrMoment;
 		};
 		
-		;
-		
 		var getAlarmTime = function () {
 			var minutesBefore = $localStorage.minutesBefore;
 			if (minutesBefore == undefined)
@@ -41,9 +40,6 @@ angular.module("TahajjudAlarm").service("AlarmService", [ '$localStorage', 'pray
 			return self.getFajrTime().format("h:mm A");
 		};
 		
-		self.getLocation = function () {
-			return $localStorage.location || { lat: 42.056338, long: -87.696397 }; // default to Chicago
-		};
 		
 		self.getAlarmDisplayTime = function () {
 			var alarmTime = getAlarmTime();
