@@ -7,7 +7,7 @@ angular.module("TahajjudAlarm").service("AlarmService", [ '$localStorage', 'pray
 		var prayerTimes = new PrayTimes();
 		
 		self.getFajrTime = function () {
-			var location = LocationService.getLocation();
+			var location = LocationService.getSavedLocation();
 				
 			var calculationMethod = self.getCalculationMethod();
 			prayerTimes.setMethod(calculationMethod);

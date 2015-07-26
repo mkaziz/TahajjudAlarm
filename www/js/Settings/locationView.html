@@ -2,7 +2,7 @@
   <ion-content class="padding">
     <form name="settingsForm" data-ng-controller="LocationController as locationController">
       <div class="list">
-        <label class="item item-radio">
+        <label class="item item-radio" style="display: none;">
           <input type="radio" name="locationRadio" value="manual" 
             ng-model="locationController.locationSelectionMethod"
             ng-click="locationController.saveLocationSelectionMethod()">
@@ -13,7 +13,7 @@
         </label>
         
         <label class="item item-radio">
-          <input type="radio" name="locationRadio" value="gps" 
+          <input type="radio" name="locationRadio" value="gps" selected
             ng-model="locationController.locationSelectionMethod"
             ng-click="locationController.saveLocationSelectionMethod()">
           <div class="item-content">
@@ -28,7 +28,9 @@
           Locate
         </button>
       </div>
-      
+      <div class="assertive" data-ng-show="locationController.getDisplayError()">
+        Unable to get your location. Is your GPS turned on?
+      </div>
       <div class="gps-find-location" data-ng-show="locationController.locationSelectionMethod == 'manual'">
         <div class="list list-inset">
           <label class="item item-input">
@@ -41,7 +43,7 @@
       <div class="list list-inset" >
         <a class="item item-icon-left" >
           <i class="icon ion-location"></i>
-            Chicago, IL
+            {{locationController.locationName}}
           <span class="item-note">
             {{locationController.latitude}}, {{locationController.longitude}}
           </span>

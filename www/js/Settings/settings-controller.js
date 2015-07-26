@@ -1,7 +1,7 @@
 ///* global angular */
 angular.module("TahajjudAlarm").controller('SettingsController', ['prayTimes', '$scope', 'moment', 
-	'AlarmService', '$ionicLoading', 
-	function(PrayTimes, $scope, Moment, AlarmService, $ionicLoading) {
+	'AlarmService', '$ionicLoading', 'LocationService',
+	function(PrayTimes, $scope, Moment, AlarmService, $ionicLoading, LocationService) {
 	    "use strict";
 		
 	    var self = this;
@@ -15,6 +15,10 @@ angular.module("TahajjudAlarm").controller('SettingsController', ['prayTimes', '
 			AlarmService.setCalculationMethod(self.calculationMethod);
 			$ionicLoading.show({ template: 'Preferences Saved!', noBackdrop: false, duration: 3000 });
 		};
+		
+		LocationService.getLocationName(function (locName) {
+			self.locationName = locName;
+		});
 		
 	}
 ]);
