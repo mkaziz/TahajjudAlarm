@@ -6,13 +6,13 @@ angular.module("TahajjudAlarm").service("AlarmService", [ '$localStorage', 'pray
 		var self = this;
 		var prayerTimes = new PrayTimes();
 		
-		self.getFajrTime = function () {
+		self.getFajrTime = function (date) {
 			var location = LocationService.getSavedLocation();
 				
 			var calculationMethod = self.getCalculationMethod();
 			prayerTimes.setMethod(calculationMethod);
 		
-			var times = prayerTimes.getTimes(new Date(), [location.lat, location.long]);
+			var times = prayerTimes.getTimes(date || new Date(), [location.lat, location.long]);
 			
 			var fajrStr = times.fajr;
 		
@@ -27,12 +27,12 @@ angular.module("TahajjudAlarm").service("AlarmService", [ '$localStorage', 'pray
 			return fajrMoment;
 		};
 		
-		var getAlarmTime = function () {
+		var getAlarmTime = function (date) {
 			var minutesBefore = $localStorage.minutesBefore;
 			if (minutesBefore == undefined)
 				return null;
 			
-			var fajrMoment = self.getFajrTime();
+			var fajrMoment = self.getFajrTime(date);
 			return fajrMoment.subtract(minutesBefore, "minutes");
 		};
 		
@@ -41,8 +41,8 @@ angular.module("TahajjudAlarm").service("AlarmService", [ '$localStorage', 'pray
 		};
 		
 		
-		self.getAlarmDisplayTime = function () {
-			var alarmTime = getAlarmTime();
+		self.getAlarmDisplayTime = function (date) {
+			var alarmTime = getAlarmTime(date);
 			if (alarmTime == null)
 				return "";
 				

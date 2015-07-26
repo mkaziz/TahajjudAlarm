@@ -2,11 +2,24 @@
 	<ion-content class="padding">
 		<div data-ng-controller="HomeController as homeController" class="home-view">
 			<div data-ng-show="homeController.isAlarmSet">
-				<p>Your Tahajjud alarm is set to:</p>
-				<h2>{{homeController.alarmTime}}</h2>
-				<p>This is {{homeController.minutesBeforeFajr}} minutes before Fajr, 
-					which is at {{homeController.fajrTime}}.</p>
-				<p>Your current location is: Chicago</p>
+				<div class="list">
+				  <div class="item">
+					Alarms set to {{homeController.minutesBeforeFajr}} mins before Fajr
+				  </div>
+				</div>
+				<div class="list">
+				  <div class="item item-divider">
+				    Upcoming Alarms 
+				  </div>
+				  <div class="item" data-ng-repeat="alarm in homeController.alarms track by $index">
+				    {{alarm}}
+				  </div>
+				</div>
+				<div class="list">
+				  <div class="item">
+					Current Location: Chicago
+				  </div>
+				</div>
 				<button class="button button-full button-assertive" data-ng-click="homeController.turnOffAlarm()">
 					Turn off Alarm
 				</button>
