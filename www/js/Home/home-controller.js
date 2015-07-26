@@ -8,18 +8,17 @@ angular.module("TahajjudAlarm").controller('HomeController', ['prayTimes', '$sco
 		
 		var loadAlarmTimes = function () {
 			self.isAlarmSet = AlarmService.isAlarmSet();
+			self.minutesBeforeFajr = AlarmService.getMinutesBefore();
 			
 			self.alarms = [];
 			
 			var currentDate = new Date();
 			for (var i = 0; i < 5; i++) {
 				self.alarms[i] = AlarmService.getAlarmDisplayTime(currentDate);
-			    currentDate.setDate(currentDate.getDate() + 1); // even 32 is acceptable
+			    currentDate.setDate(currentDate.getDate() + 1);
 			}
 		};
 		
 		loadAlarmTimes();
-		
-		
 	}
 ]);
