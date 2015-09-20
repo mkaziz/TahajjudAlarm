@@ -14,7 +14,10 @@ angular.module("TahajjudAlarm").controller('HomeController', ['prayTimes', '$sco
 			
 			var currentDate = new Date();
 			for (var i = 0; i < 5; i++) {
-				self.alarms[i] = AlarmService.getAlarmDisplayTime(currentDate);
+				self.alarms[i] = {
+					time: AlarmService.getAlarmDisplayTime(currentDate),
+					date: currentDate.toDateString()
+				}
 			    currentDate.setDate(currentDate.getDate() + 1);
 			}
 		};
